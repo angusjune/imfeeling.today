@@ -3,6 +3,15 @@ $color-list-size: 150px;
 $default-theme-color: #fff;
 $light-theme-color  : #333;
 
+%center {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -123,12 +132,7 @@ a {
 }
 
 .main-color {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  align-items: center;
+  @extend %center;
   -webkit-flex-direction: column;
   flex-direction: column;
 
@@ -147,6 +151,10 @@ a {
   height: $color-list-size;
   overflow-x: auto;
   background-color: #ddd;
+  //display: -webkit-flex;
+  //display: flex;
+  //-webkit-align-items: center;
+  //align-items: center;
 
   &__list {
     display: block;
@@ -169,6 +177,21 @@ a {
     }
   }
 
+  &__empty {
+    position: absolute;
+    cursor: default;
+    text-align: center;
+    width: 100%;
+    font-size: 3rem;
+    line-height: $color-list-size;
+    color: #999;
+    margin: 0;
+
+    &.hide {
+      opacity: 0;
+    }
+  }
+
   &__block {
     width: 100%;
     height: 100%;
@@ -188,7 +211,7 @@ a {
 
     &__text {
       cursor: default;
-      font-size: 1.2rem;
+      font-size: 2rem;
       -webkit-transition: color linear 2s;
       transition: color linear 2s;
 
@@ -209,5 +232,9 @@ a {
 @media screen and (min-width: 720px) {
   html, body {
     font-size: 100%;
+  }
+
+  .colors__block__text {
+    font-size: 1.2rem;
   }
 }

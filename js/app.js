@@ -145,8 +145,7 @@ function prependNewColor() {
         scale: [1,1],
         easing: 'spring',
         springConstant: 0.3,
-        springDeceleration: 0.8,
-        duration: 200,
+        springDeceleration: 0.6,
         delay: 50,
         complete: function(){
             // When the animation completed, remove the placeholder
@@ -316,12 +315,12 @@ function setFavicon(color) {
     // Create gradient base on the color
     var gradient = ctx.createLinearGradient(faviconSize / 2, 0, faviconSize / 2, faviconSize);
     gradient.addColorStop(0, chroma(color).hex());
-    gradient.addColorStop(1, chroma(color).saturate(1).hex());
+    gradient.addColorStop(1, chroma(color).darken(1).hex());
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, faviconSize, faviconSize);
     var uri = canvas.toDataURL();
 
-    $('link[rel=icon]').attr('href', uri);
+    $icon.attr('href', uri);
 
     // Set title as well
     $('title').text('feeling ' + chroma(color).hex() + ' today');
@@ -391,8 +390,7 @@ $mainColor.click(function(e) {
     if (body.hasClass('show-list')) {
         hideColorsList();
     } else {
-        addColor(color, date, Date.now());
-        animateColorDrop();
+        clickMainColor();
     }
 });
 
