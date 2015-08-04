@@ -380,10 +380,11 @@ init();
 function setColor(offsetX, offsetY) {
     //debug.html('x: ' + offsetX + '; y:' + offsetY + '; color:' + color);
 
-    var hue = Math.round((offsetX / mainColorW) * 260);
-    var lightness = Math.round(100 - (offsetY / mainColorH) * 100);
+    var hue = Math.round((offsetX / mainColorW) * 360);
+    var saturation = Math.round(100 - (offsetY / mainColorH) * 100);
+    var lightness = Math.round((offsetX / mainColorW) * 50 + (offsetY / mainColorH) * 50);
 
-    color = 'hsl(' + hue + ',' + saturation + ',' + lightness + '%)';
+    color = 'hsl(' + hue + ',' + saturation + '%,' + lightness + '%)';
     $mainColor.css('background-color', color);
     checkContrast(color, $mainColor);
 
