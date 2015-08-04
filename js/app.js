@@ -294,6 +294,14 @@ function showColorsList() {
         easing: 'easeOut',
         duration: 200
     });
+
+    $btnShowList.snabbt({
+        fromOpacity: 1,
+        opacity: 0,
+        duration: 350,
+        complete: function(){$btnShowList.addClass('invisible');}
+    });
+
     body.addClass('show-list');
     $btnShowList.addClass('up');
 }
@@ -304,6 +312,14 @@ function hideColorsList() {
         easing: 'easeOut',
         duration: 200
     });
+
+    $btnShowList.removeClass('invisible');
+    $btnShowList.snabbt({
+        fromOpacity: 0,
+        opacity: 1,
+        duration: 350
+    });
+
     body.removeClass('show-list');
     $btnShowList.removeClass('up');
 }
@@ -343,6 +359,8 @@ function setInitColor() {
 }
 
 function clickMainColor() {
+    $('.colors').scrollLeft(0);
+
     addColor(color, date, Date.now());
     checkColorsListEmpty();
     animateColorDrop();
