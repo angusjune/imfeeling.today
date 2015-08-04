@@ -1,3 +1,11 @@
+.main-color {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center; }
+
 * {
   box-sizing: border-box; }
 
@@ -85,12 +93,6 @@ a {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); }
 
 .main-color {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  align-items: center;
   -webkit-flex-direction: column;
   flex-direction: column;
   position: absolute;
@@ -121,6 +123,17 @@ a {
       margin: 0; }
       .colors__list li.placeholder {
         position: absolute; }
+  .colors__empty {
+    position: absolute;
+    cursor: default;
+    text-align: center;
+    width: 100%;
+    font-size: 3rem;
+    line-height: 150px;
+    color: #999;
+    margin: 0; }
+    .colors__empty.hide {
+      opacity: 0; }
   .colors__block {
     width: 100%;
     height: 100%;
@@ -137,7 +150,7 @@ a {
       background-color: #999; }
     .colors__block__text {
       cursor: default;
-      font-size: 1.2rem;
+      font-size: 2rem;
       -webkit-transition: color linear 2s;
       transition: color linear 2s; }
       .light .colors__block__text {
@@ -151,6 +164,9 @@ a {
 
 @media screen and (min-width: 720px) {
   html, body {
-    font-size: 100%; } }
+    font-size: 100%; }
+
+  .colors__block__text {
+    font-size: 1.2rem; } }
 
 /*# sourceMappingURL=app.css.map */

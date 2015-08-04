@@ -2,11 +2,13 @@ var body        = $('body');
 var $mainColor  = $('.main-color');
 var debug       = $('#debug');
 var $colorsList = $('.colors__list');
+var $colorsEmpty = $('.colors__empty');
 var $dropper    = $('.dropper');
 var $question   = $('.question');
 var $questionColor = $('.question__color');
 var $btnAddColor   = $('.button-add-color');
 var $btnShowList   = $('.button-show-list');
+var $icon = $('link[rel=icon], link[rel=apple-touch-icon]');
 
 var saturation  = '60%';
 var blockSize   = 150;
@@ -33,6 +35,7 @@ function clearStorageColors() {
     colorArray = [];
     localStorage.removeItem('colors');
     $colorsList.empty();
+    checkColorsListEmpty();
 }
 
 function debugSetColor(c, dateOfMonth) {
@@ -54,7 +57,6 @@ function debugAddColors() {
     var colors = chroma.brewer.OrRd;
     var startDate = 9;
     colors.forEach(function(el) {
-        //console.log(chroma(el).hsl());
         var h = Math.round(chroma(el).hsl()[0]);
         var s = Math.round(chroma(el).hsl()[1] * 100);
         var l = Math.round(chroma(el).hsl()[2] * 100);
@@ -62,6 +64,7 @@ function debugAddColors() {
 
         debugSetColor(hsl, startDate++);
         listColors();
+        checkColorsListEmpty();
     });
 }
 
@@ -207,6 +210,14 @@ function checkContrast(color, object) {
     }
 }
 
+function checkColorsListEmpty() {
+    if (colorArray.length === 0) {
+        $colorsEmpty.removeClass('hide');
+    } else {
+        $colorsEmpty.addClass('hide');
+    }
+}
+
 function animateColorDrop() {
 
     $dropper.css({
@@ -332,10 +343,17 @@ function setInitColor() {
     }
 }
 
+function clickMainColor() {
+    addColor(color, date, Date.now());
+    checkColorsListEmpty();
+    animateColorDrop();
+}
+
 function init() {
     getParameter();
     getDate();
     getColorArray();
+    checkColorsListEmpty();
     setInitColor();
     listColors();
 }
@@ -390,9 +408,8 @@ $mainColor.bind('touchstart',function(e) {
     e.preventDefault();
 
     if (!body.hasClass('show-list')) {
-        // Wait before button disappear
         timeout = setTimeout(function(){
-            $btnAddColor.addClass('hide');
+            $btnAddColor.addClass('hide');  // Wait before button disappear
         }, 1500);
     }
 
@@ -425,7 +442,6 @@ $btnAddColor.bind('touchstart', function(e){
             easing: 'spring'
         });
     }
-
 }).bind('touchend', function(e){
     e.preventDefault();
 
@@ -435,8 +451,7 @@ $btnAddColor.bind('touchstart', function(e){
             easing: 'spring'
         });
 
-        addColor(color, date, Date.now());
-        animateColorDrop();
+        clickMainColor();
     }
 });
 
@@ -447,8 +462,3 @@ $btnShowList.bind('click touchend', function(e) {
         showColorsList();
     }
 });
-
-
-//$colorsList.bind('touchstart touchend touchmove', function(){
-//    return true;
-//});
