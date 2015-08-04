@@ -7,7 +7,9 @@
   align-items: center; }
 
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  user-select: none; }
 
 html, body {
   width: 100%;
@@ -19,6 +21,11 @@ html, body {
   font-family: futura, sans-serif;
   font-size: 8px;
   color: #fff; }
+
+body {
+  -webkit-tap-highlight-color: transparent;
+  /* Remove black mask on tabbing links */
+  -webkit-overflow-scrolling: touch; }
 
 a {
   text-decoration: none;
