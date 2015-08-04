@@ -336,7 +336,7 @@ function setFavicon(color) {
     ctx.fillRect(0, 0, faviconSize, faviconSize);
     var uri = canvas.toDataURL();
 
-    $icon.attr('href', uri + '?v=' + Date.now()); // Force favico refresh
+    $icon.attr('href', uri + '?v=' + Date.now()); // Force favicon refresh
 
     // Set title as well
     $('title').text('feeling ' + chroma(color).hex() + ' today');
