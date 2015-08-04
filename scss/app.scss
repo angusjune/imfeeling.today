@@ -1,0 +1,213 @@
+$color-list-size: 150px;
+
+$default-theme-color: #fff;
+$light-theme-color  : #333;
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 0;
+  margin: 0;
+  font-family: futura, sans-serif;
+  font-size: 8px;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.canvas {
+  display: none;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+}
+
+.question {
+  cursor: default;
+  font-weight: bold;
+  font-size: 3rem;
+  -webkit-transition: color linear 1.5s;
+  transition: color linear 1.5s;
+  z-index: 1;
+
+  .light & {
+    color: #333;
+  }
+
+  &__color {
+    font-family: "source code pro", "source-code-pro", courier, monospace;
+  }
+}
+
+.button-add-color {
+  display: none;
+  font-size: 2rem;
+  color: #333;
+  background-color: #fff;
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  border-radius: 4px;
+  -webkit-transition: background linear 2s, color linear 1.4s, opacity ease-out 0.6s;
+  transition: background linear 2s, color linear 1.4s, opacity ease-out 0.6s;
+
+  &.hide {
+    opacity: 0;
+  }
+
+  .touchevents & {
+    display: inline-block;
+  }
+
+  .light & {
+    background-color: #333;
+    color: #fff;
+  }
+}
+
+.arrow {
+  position: absolute;
+  bottom: 2rem;
+  width: 5rem;
+  left: 50%;
+  margin-left: -2.5rem;
+  text-align: center;
+}
+
+.button-show-list {
+  display: block;
+  -webkit-transition: opacity linear 0.35s, -webkit-transform cubic-bezier(0.165, 0.84, 0.44, 1) 0.8s;
+  transition: opacity linear 0.35s, transform cubic-bezier(0.165, 0.84, 0.44, 1) 0.8s;
+
+  &.up {
+    //-webkit-transform: rotate(180deg);
+    //transform: rotate(180deg);
+    opacity: 0;
+  }
+
+  &.hide {
+    opacity: 0;
+  }
+
+  svg {
+    fill: #fff;
+    -webkit-transition: opacity linear 1.2s, fill linear 1.2s, -webkit-transform cubic-bezier(0.165, 0.84, 0.44, 1) 1.8s;
+    transition: opacity linear 1.2s, fill linear 1.2s, transform cubic-bezier(0.165, 0.84, 0.44, 1) 1.8s;
+
+    .light ~ .arrow & {
+      fill: #333;
+    }
+  }
+}
+
+.dropper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  &.animating {
+  }
+}
+
+.main-color {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.colors {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: $color-list-size;
+  overflow-x: auto;
+  background-color: #ddd;
+
+  &__list {
+    display: block;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto;
+
+
+    li {
+      list-style: none;
+      height: 100%;
+      width: $color-list-size;
+      float: left;
+      margin: 0;
+
+      &.placeholder {
+        position: absolute;
+      }
+    }
+  }
+
+  &__block {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-transition: background-color linear 2s;
+    transition: background-color linear 2s;
+
+    .placeholder & {
+      background-color: #999;
+    }
+
+    &__text {
+      cursor: default;
+      font-size: 1.2rem;
+      -webkit-transition: color linear 2s;
+      transition: color linear 2s;
+
+      .light & {
+        color: #333;
+      }
+    }
+  }
+}
+
+#debug {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+}
+
+@media screen and (min-width: 720px) {
+  html, body {
+    font-size: 100%;
+  }
+}
