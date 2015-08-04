@@ -26,7 +26,6 @@ window.onresize = getParameter;
 
 //body.bind('touchmove', function(e) { e.preventDefault(); });
 
-
 function logStorageColors() {
     return JSON.parse(localStorage.getItem('colors'));
 }
@@ -119,7 +118,6 @@ function addColor(color, dateString, timestamp) {
         prependNewColor();
     }
 
-    setFavicon(color);
     localStorage.setItem('colors', JSON.stringify(colorArray));
 }
 
@@ -336,7 +334,7 @@ function setFavicon(color) {
     ctx.fillRect(0, 0, faviconSize, faviconSize);
     var uri = canvas.toDataURL();
 
-    $icon.attr('href', uri + '?v=' + Date.now()); // Force favicon refresh
+    $icon.attr('href', uri);
 
     // Set title as well
     $('title').text('feeling ' + chroma(color).hex() + ' today');
@@ -352,8 +350,6 @@ function setInitColor() {
             checkContrast(color, $mainColor);
             $mainColor.css('background-color', color);
             $questionColor.html(chroma(color).hex());
-
-
         }
     }
 }
@@ -362,6 +358,7 @@ function clickMainColor() {
     $('.colors').scrollLeft(0);
 
     addColor(color, date, Date.now());
+    setFavicon(color);
     checkColorsListEmpty();
     animateColorDrop();
 }
