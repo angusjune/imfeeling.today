@@ -6,7 +6,7 @@
     <title>feeling __ today</title>
 
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white-translucent" id="status_bar">
     <meta name="apple-mobile-web-app-title" content="Feeling">
 
     <link rel="icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=">
@@ -17,6 +17,11 @@
 
     <script src="//use.typekit.net/inq8xct.js"></script>
     <script>try{Typekit.load();}catch(e){}</script>
+    <script type="text/javascript">
+        if(!navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)){
+            document.getElementById("status_bar").content = "black-translucent";
+        }
+    </script>
 </head>
 <body class="init">
 
